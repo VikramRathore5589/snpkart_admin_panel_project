@@ -10,7 +10,6 @@ class SignUpScreen extends StatelessWidget {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // final confirmPasswordController = TextEditingController();
   SignUpScreen({super.key});
 
   @override
@@ -24,12 +23,13 @@ class SignUpScreen extends StatelessWidget {
         AuthProvider authProvider =
             Provider.of<AuthProvider>(context, listen: false);
         await authProvider.signUp(authModel);
+        if(context.mounted){
         Navigator.pushReplacement(
             context,
             MaterialPageRoute(
               builder: (context) => LogInScreen(),
             ));
-      }
+      }}
     }
 
     return Scaffold(
@@ -56,14 +56,14 @@ class SignUpScreen extends StatelessWidget {
                   child: Column(
                     // mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Sign Up',
                         style: TextStyle(
                             fontSize: 35,
                             color: Colors.white,
                             fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       UiHelper.customTextField(
@@ -71,38 +71,34 @@ class SignUpScreen extends StatelessWidget {
                           controller: usernameController,
                           hintText: 'Enter Username',
                           borderRadius: BorderRadius.circular(10)),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       UiHelper.customTextField(
-                          inputType: TextInputType.numberWithOptions(),
+                          inputType: const TextInputType.numberWithOptions(),
                           controller: passwordController,
                           hintText: 'Enter Password',
                           borderRadius: BorderRadius.circular(10)),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
-                      // buildTextField(
-                      //     'Confirm password',
-                      //     TextInputType.numberWithOptions(),
-                      //     confirmPasswordController),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       ElevatedButton(
                           onPressed: () async {
                             signUp();
                           },
-                          child: Text(
+                          child: const Text(
                             'Sign up',
                             style: TextStyle(color: Colors.black),
                           )),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          const Text(
                             'Already have an Account ?',
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                            style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                           TextButton(
                             onPressed: () {
@@ -112,7 +108,7 @@ class SignUpScreen extends StatelessWidget {
                                     builder: (context) => LogInScreen(),
                                   ));
                             },
-                            child: Text(
+                            child: const Text(
                               'Log In',
                               style: TextStyle(
                                 color: Colors.lime,
@@ -122,7 +118,7 @@ class SignUpScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      Text(
+                      const Text(
                         'Forgot password ?',
                         style: TextStyle(
                           color: Colors.white,
@@ -143,23 +139,5 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 
-// TextFormField buildTextField(
-//     String hintText, TextInputType type, TextEditingController controller) {
-//   return TextFormField(
-//     validator: (
-//       String? value,
-//     ) {
-//       if (value == null || value.isEmpty) {
-//         return 'This field is required';
-//       }
-//     },
-//     controller: controller,
-//     keyboardType: type,
-//     decoration: InputDecoration(
-//         hintText: hintText,
-//         filled: true,
-//         fillColor: Colors.white.withOpacity(0.8),
-//         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10))),
-//   );
-// }
+
 }

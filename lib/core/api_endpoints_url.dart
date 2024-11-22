@@ -4,5 +4,9 @@ class ApiUrl{
   static const loginUrl='$baseUrl/users/login';
   static const fetchProductUrl='$baseUrl/products';
   static const getCategoryUrl='$baseUrl/categories';
-  static const deleteProductUrl='$baseUrl/products/';
+   static const deleteProductUrl='$baseUrl/products/';
+  static const addProductUrl='$baseUrl/products';
+  static const addCategoryUrl='$baseUrl/categories';
+  static const deleteCategory='$baseUrl/categories/';
+
 }

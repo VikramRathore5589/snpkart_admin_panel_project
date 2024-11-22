@@ -1,4 +1,3 @@
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StorageHelper {
@@ -13,5 +12,10 @@ class StorageHelper {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String? token = sharedPreferences.getString(tokenKey);
     return token;
+  }
+
+  static Future clearToken() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    sharedPreferences.remove(tokenKey);
   }
 }

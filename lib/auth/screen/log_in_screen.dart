@@ -24,21 +24,19 @@ class LogInScreen extends StatelessWidget {
         Provider.of<AuthProvider>(context, listen: false);
         bool success = await authProvider.logIn(authModel);
         if (success) {
+          if(context.mounted){
           Navigator.pushReplacement(
             context,
-            MaterialPageRoute(builder: (context) => DashboardScreen()),
-          );
+            MaterialPageRoute(builder: (context) => const DashboardScreen()),
+          );}
         } else {
-          // Not do any movement and stay on current screen
+          // Not do any operation and stay on current screen
         }
       }
     }
 
     return Scaffold(
-      // backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   title: const Text('Log In Screen'),
-      // ),
+
       body: SingleChildScrollView(
         child: SafeArea(
           child: Center(
@@ -48,14 +46,14 @@ class LogInScreen extends StatelessWidget {
                 key: formKey,
                 child: Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
-                    Icon(
+                    const Icon(
                       Icons.lock,
                       size: 100,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Text(
@@ -65,17 +63,17 @@ class LogInScreen extends StatelessWidget {
                         color: Colors.grey[700],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     UiHelper.customTextField(
                         controller: emailController, hintText: 'Enter Email'),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
-                    UiHelper.customTextField(controller: passwordController,
+                    UiHelper.customTextField(controller: passwordController,inputType: const TextInputType.numberWithOptions(),
                         hintText: 'Enter Password'),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Align(
@@ -87,7 +85,7 @@ class LogInScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     GestureDetector(
@@ -99,7 +97,7 @@ class LogInScreen extends StatelessWidget {
                             color: Colors.black,
                             borderRadius: BorderRadius.circular(6)),
                         height: 50,
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'LOG IN',
                             style: TextStyle(
@@ -110,10 +108,10 @@ class LogInScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Expanded(
                           child: Divider(
@@ -122,7 +120,7 @@ class LogInScreen extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                          padding: EdgeInsets.symmetric(horizontal: 10.0),
                           child: Text('Continue with'),
                         ),
                         Expanded(
@@ -140,19 +138,19 @@ class LogInScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         imageContainer('assets/images/google.png'),
-                        SizedBox(
+                        const SizedBox(
                           width: 16,
                         ),
                         imageContainer('assets/images/apple.png')
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Not a Member?'),
+                        const Text('Not a Member?'),
                         TextButton(
                             onPressed: () {
                               Navigator.pushReplacement(

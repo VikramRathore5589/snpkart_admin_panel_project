@@ -24,15 +24,15 @@ class WelcomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   RichText(
-                    text: TextSpan(
-                        style: const TextStyle(
+                    text: const TextSpan(
+                        style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w500,
                           fontStyle: FontStyle.italic,
                           color: Colors.white,
                         ),
                         text: 'Welcome Back\n',
-                        children: const [
+                        children: [
                           TextSpan(
                               text: 'Enter Personal details to your own account',
                               style: TextStyle(
@@ -60,10 +60,10 @@ class WelcomeScreen extends StatelessWidget {
                       const Color(0xFF7EA8E1),
                       'SIGN IN',
                       Colors.white,
-                      Radius.circular(0),
-                      Radius.circular(0),
-                      Radius.circular(80),
-                      Radius.circular(80)),
+                      const Radius.circular(0),
+                      const Radius.circular(0),
+                      const Radius.circular(80),
+                      const Radius.circular(80)),
                   containerButton(
                       context,
                           () {
@@ -73,10 +73,10 @@ class WelcomeScreen extends StatelessWidget {
                       const Color(0xFF4A90E2),
                       'SIGN UP',
                       Colors.white,
-                      Radius.circular(80),
-                      Radius.circular(80),
-                      Radius.circular(0),
-                      Radius.circular(0))
+                      const Radius.circular(80),
+                      const Radius.circular(80),
+                      const Radius.circular(0),
+                      const Radius.circular(0))
                 ],
               ),
             )

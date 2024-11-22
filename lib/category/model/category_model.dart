@@ -1,8 +1,9 @@
+//Category Model Class
 class CategoryModel {
   String? sId;
   String? name;
   int? iV;
-
+//Constructor of category class
   CategoryModel({this.sId, this.name, this.iV});
 
   CategoryModel.fromJson(Map<String, dynamic> json) {
@@ -12,7 +13,7 @@ class CategoryModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['_id'] = sId;
     data['name'] = name;
     data['__v'] = iV;

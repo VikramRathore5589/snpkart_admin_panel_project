@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:snpkart_admin_panel_project/cart/screen/cart_screen.dart';
 import 'package:snpkart_admin_panel_project/category/screen/category_screen.dart';
@@ -6,7 +5,7 @@ import 'package:snpkart_admin_panel_project/product/screen/product_screen.dart';
 import 'package:snpkart_admin_panel_project/profile/screen/profile_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
-  DashboardScreen({super.key});
+  const DashboardScreen({super.key});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -16,10 +15,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int currentIndex = 0;
 
   List<Widget> screens = [
-    ProductScreen(),
-    CategoryScreen(),
-    CartScreen(),
-    ProfileScreen()
+    const ProductScreen(),
+    const CategoryScreen(),
+    const CartScreen(),
+    const ProfileScreen()
   ];
 
   @override
@@ -40,7 +39,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           type: BottomNavigationBarType.fixed,
           selectedItemColor: Colors.white,
           unselectedItemColor: Colors.white54,
-          items:  [
+          items:  const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',

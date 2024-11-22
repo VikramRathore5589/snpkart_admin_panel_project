@@ -6,29 +6,28 @@ import 'package:snpkart_admin_panel_project/core/storage_helper/storage_helper_c
 
 class AuthProvider extends ChangeNotifier {
   AuthService authService;
-  // bool isAuthenticated=true;
-
+   String? errorMessage;
+//get AuthService class Object
   AuthProvider(this.authService);
-
+//here call signUp function  get from AuthService(API)
   Future signUp(AuthModel authModel) async {
     try {
       bool success = await authService.signUp(authModel);
-      notifyListeners();
       if (success) {
-         Util.flutterToast('Account Created successfully');
+        Util.flutterToast('Account Created successfully');
       }
     } catch (e) {
-      // return false;
       Util.flutterToast(e.toString());
+    } finally {
+      notifyListeners();
     }
   }
+//call LogIn function create in AuthService(API)
   Future<bool> logIn(AuthModel authModel) async {
     try {
       String? token = await authService.logIn(authModel);
-
-      if (token != null && token.isNotEmpty) {
+      if (token.isNotEmpty) {
         await StorageHelper.saveToken(token);
-        notifyListeners();
         Util.flutterToast('Logged in successfully.');
         return true;
       } else {
@@ -38,8 +37,19 @@ class AuthProvider extends ChangeNotifier {
     } catch (e) {
       Util.flutterToast('Error: ${e.toString()}');
       return false;
+    } finally {
+      notifyListeners();
     }
   }
+  Future logOut() async {
+    try {
+      errorMessage = null;
+      await StorageHelper.clearToken();
 
-
+      // Util.flutterToast('Log out successfully');
+      notifyListeners();
+    } catch (e) {
+      errorMessage = errorMessage.toString();
+    }
+  }
 }

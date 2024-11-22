@@ -5,8 +5,10 @@ class UiHelper {
       {required TextEditingController controller,
       required String hintText,
       BorderRadius? borderRadius,
-      TextInputType? inputType}) {
+      TextInputType? inputType,
+      int? maxLine}) {
     return TextFormField(
+      maxLines: maxLine,
       keyboardType: inputType,
       controller: controller,
       decoration: InputDecoration(
@@ -14,15 +16,32 @@ class UiHelper {
           filled: true,
           hintText: hintText,
           border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.red),
+            borderSide: const BorderSide(color: Colors.red),
             borderRadius: borderRadius ?? BorderRadius.circular(8),
           )),
       validator: (String? value) {
         if (value == null || value.isEmpty) {
           return 'This field are required';
         }
+        return null;
       },
     );
   }
 
+  static Widget customElevatedButton(
+      {required VoidCallback callback, required String child}) {
+    return ElevatedButton(
+        onPressed: () {
+          callback();
+        },
+        child: Text(child));
+  }
+
+  static Widget customFloatingActionButton(VoidCallback callback, Icon icon) {
+    return FloatingActionButton(
+        onPressed: () {
+          callback();
+        },
+        child: icon);
+  }
 }

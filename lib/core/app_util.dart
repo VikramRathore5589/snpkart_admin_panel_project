@@ -12,11 +12,11 @@ class Util {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.shopping_cart, color: Colors.white),
+          const Icon(Icons.shopping_cart, color: Colors.white),
           const SizedBox(width: 10),
           Text(
             name,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
@@ -38,7 +38,7 @@ class Util {
         IconButton(
           icon: const Icon(Icons.search, color: Colors.white),
           onPressed: () {
-            print("Search icon pressed");
+
           },
         ),
       ],
