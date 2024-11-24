@@ -6,7 +6,7 @@ class Util {
     Fluttertoast.showToast(msg: message);
   }
 
-  static AppBar appBar(String name) {
+  static AppBar appBar(String name, Icon icon, VoidCallback callback) {
     return AppBar(
       automaticallyImplyLeading: false,
       title: Row(
@@ -36,9 +36,9 @@ class Util {
       ),
       actions: [
         IconButton(
-          icon: const Icon(Icons.search, color: Colors.white),
+          icon: icon,color: Colors.white,
           onPressed: () {
-
+            callback();
           },
         ),
       ],
