@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:snpkart_admin_panel_project/admin/provider/add_category_provider.dart';
 import 'package:snpkart_admin_panel_project/category/model/category_model.dart';
+import 'package:snpkart_admin_panel_project/category/provider/category_provider.dart';
 import 'package:snpkart_admin_panel_project/category/screen/category_screen.dart';
 import 'package:snpkart_admin_panel_project/core/ui_helper/ui_helper.dart';
 
@@ -18,9 +18,9 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
   Future addCategory() async {
     String name = categoryNameController.text;
     CategoryModel categoryModel = CategoryModel(name: name);
-    AddCategoryProvider categoryProvider =
-        Provider.of<AddCategoryProvider>(context, listen: false);
-    bool success = await categoryProvider.addCategories(categoryModel);
+    CategoryProvider categoryProvider =
+        Provider.of<CategoryProvider>(context, listen: false);
+    bool success = await categoryProvider.addCategory(categoryModel);
     if (success) {
       if (mounted) {
         Navigator.pushReplacement(
@@ -50,9 +50,11 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
             SizedBox(
               height: 16,
             ),
-            UiHelper.customElevatedButton(callback: () {
-              addCategory();
-            }, child: 'Add')
+            UiHelper.customElevatedButton(
+                callback: () {
+                  addCategory();
+                },
+                child: 'Add')
           ],
         ),
       ),

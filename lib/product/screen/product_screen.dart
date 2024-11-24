@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:snpkart_admin_panel_project/admin/screen/add_product_screen.dart';
+import 'package:snpkart_admin_panel_project/product/screen/add_product_screen.dart';
 import 'package:snpkart_admin_panel_project/core/app_util.dart';
 import 'package:snpkart_admin_panel_project/product/model/product_model.dart';
 import 'package:snpkart_admin_panel_project/product/provider/product_provider.dart';
@@ -9,11 +9,10 @@ import 'package:snpkart_admin_panel_project/product/screen/product_detail_screen
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     ProductProvider productProvider =
-    Provider.of<ProductProvider>(context, listen: false);
+        Provider.of<ProductProvider>(context, listen: false);
     productProvider.fetchProduct();
 
     return Scaffold(
@@ -27,21 +26,20 @@ class ProductScreen extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-      appBar: Util.appBar('Products'),
+      appBar: Util.appBar('Products', Icon(Icons.search),(){}),
       body: Consumer<ProductProvider>(
         builder: (context, provider, child) {
-
           if (provider.productList.isEmpty) {
             return Center(
               child: provider.errorMessage == null
                   ? const Text(
-                'No items in product screen',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              )
+                      'No items in product screen',
+                      style: TextStyle(fontSize: 16, color: Colors.grey),
+                    )
                   : Text(
-                'Failed to fetch products: ${provider.errorMessage}',
-                style: const TextStyle(fontSize: 16, color: Colors.red),
-              ),
+                      'Failed to fetch products: ${provider.errorMessage}',
+                      style: const TextStyle(fontSize: 16, color: Colors.red),
+                    ),
             );
           } else {
             return ListView.builder(
@@ -54,7 +52,8 @@ class ProductScreen extends StatelessWidget {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text('Are you sure to delete this item'),
+                            title:
+                                const Text('Are you sure to delete this item'),
                             actions: [
                               TextButton(
                                   onPressed: () {
@@ -97,5 +96,4 @@ class ProductScreen extends StatelessWidget {
       ),
     );
   }
-
 }

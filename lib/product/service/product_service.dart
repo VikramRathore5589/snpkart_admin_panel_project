@@ -39,4 +39,42 @@ class ProductService {
       throw 'Something went wrong';
     }
   }
+
+  Future<bool> addProduct(ProductModel product) async {
+    String? token = await StorageHelper.getToken();
+    if (token == null) {
+      throw 'Token is null Please pass Token';
+    }
+
+    String url = ApiUrl.addProductUrl;
+    String string = jsonEncode(product.toJson());
+
+    Response response = await http.post(Uri.parse(url), body: string, headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': 'aihfj--qwnkqwr--jlkqwnjqw--jnkqwjnqwy',
+      'Authorization': 'Bearer $token'
+    });
+
+    if (response.statusCode == 201) {
+      return true;
+    } else {
+      throw 'Something went wrong';
+    }
+  }
+
+  Future<bool> updateProduct(id, ProductModel productModel) async {
+    String? token = await StorageHelper.getToken();
+    String url = "${ApiUrl.updateProduct}$id";
+    final encode = jsonEncode(productModel.toJson());
+    Response response = await http.put(Uri.parse(url), body: encode, headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': 'aihfj--qwnkqwr--jlkqwnjqw--jnkqwjnqwy',
+      'Authorization': 'Bearer $token'
+    });
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw 'Something went wrong';
+    }
+  }
 }

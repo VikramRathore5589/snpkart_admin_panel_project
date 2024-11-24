@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:snpkart_admin_panel_project/admin/provider/add_product_provider.dart';
 import 'package:snpkart_admin_panel_project/core/ui_helper/ui_helper.dart';
 import 'package:snpkart_admin_panel_project/product/model/product_model.dart';
+import 'package:snpkart_admin_panel_project/product/provider/product_provider.dart';
 import 'package:snpkart_admin_panel_project/product/screen/product_screen.dart';
 
 class AddProductScreen extends StatelessWidget {
@@ -17,6 +17,7 @@ class AddProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future addProducts() async {
+
       String name = nameController.text;
       int price = int.parse(priceController.text);
       String description = descController.text;
@@ -27,8 +28,8 @@ class AddProductScreen extends StatelessWidget {
             price: price,
             category: category,
             description: description);
-        AddProductProvider addProductProvider =
-            Provider.of<AddProductProvider>(context, listen: false);
+        ProductProvider addProductProvider =
+            Provider.of<ProductProvider>(context, listen: false);
       bool success=  await addProductProvider.addProduct(productModel);
         if (success) {
           if(context.mounted){

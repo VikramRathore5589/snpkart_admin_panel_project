@@ -37,4 +37,32 @@ class ProductProvider extends ChangeNotifier {
       Util.flutterToast(e.toString());
     }
   }
+
+  Future addProduct(ProductModel product) async {
+    try {
+      bool result = await productService.addProduct(product);
+      notifyListeners();
+      if (result) {
+        Util.flutterToast('Product Added Successfully');
+        return true;
+      }
+    } catch (e) {
+      Util.flutterToast(e.toString());
+      return false;
+    }
+  }
+
+  Future updateProduct(String id, ProductModel productModel) async {
+    try {
+      bool success = await productService.updateProduct(id, productModel);
+      notifyListeners();
+      if (success) {
+        Util.flutterToast('Product Added Successfully');
+        return true;
+      }
+    } catch (e) {
+      Util.flutterToast(e.toString());
+      return false;
+    }notifyListeners();
+  }
 }

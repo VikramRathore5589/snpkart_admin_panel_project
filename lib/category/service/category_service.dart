@@ -35,4 +35,24 @@ class CategoryService {
       throw 'Something went Wrong';
     }
   }
+
+  Future<bool> addCategory(CategoryModel categoryModel) async {
+    String? token = await StorageHelper.getToken();
+    if (token == null) {
+      throw 'Token is Null';
+    }
+
+    String url = ApiUrl.addCategoryUrl;
+    String encode = jsonEncode(categoryModel.toJson());
+    Response response = await http.post(Uri.parse(url), body: encode, headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': 'aihfj--qwnkqwr--jlkqwnjqw--jnkqwjnqwy',
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 201) {
+      return true;
+    } else {
+      throw 'Invalid token';
+    }
+  }
 }
