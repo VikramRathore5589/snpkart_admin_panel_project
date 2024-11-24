@@ -8,5 +8,6 @@ class ApiUrl{
   static const addProductUrl='$baseUrl/products';
   static const addCategoryUrl='$baseUrl/categories';
   static const deleteCategory='$baseUrl/categories/';
+  static const updateProduct='$baseUrl/products/';
 
 }
