@@ -13,33 +13,42 @@ class AddProductScreen extends StatelessWidget {
   final priceController = TextEditingController();
   final descController = TextEditingController();
   final categoryController = TextEditingController();
+  final discountAmountController = TextEditingController();
+  final stockController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     Future addProducts() async {
-
-      String name = nameController.text;
-      int price = int.parse(priceController.text);
-      String description = descController.text;
-      String category = categoryController.text;
       if (formKey.currentState!.validate()) {
-        ProductModel productModel = ProductModel(
-            name: name,
-            price: price,
-            category: category,
-            description: description);
-        ProductProvider addProductProvider =
-            Provider.of<ProductProvider>(context, listen: false);
-      bool success=  await addProductProvider.addProduct(productModel);
-        if (success) {
-          if(context.mounted){
-          Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ProductScreen(),
-              ));
-        }} else {
-          throw 'Unable to add Product try again Later';
+        String name = nameController.text;
+        double price = double.parse(priceController.text);
+        String description = descController.text;
+        String category = categoryController.text;
+        double discountAmount = double.parse(discountAmountController.text);
+        int stock = int.parse(stockController.text);
+
+        if (formKey.currentState!.validate()) {
+          ProductModel productModel = ProductModel(
+              name: name,
+              price: price,
+              categoryId: category,
+              description: description,
+              discountAmount: discountAmount,
+              stock: stock);
+          ProductProvider addProductProvider =
+              Provider.of<ProductProvider>(context, listen: false);
+          bool success = await addProductProvider.addProduct(productModel);
+          if (success) {
+            if (context.mounted) {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProductScreen(),
+                  ));
+            }
+          } else {
+            throw 'Unable to add Product try again Later';
+          }
         }
       }
     }
@@ -76,6 +85,17 @@ class AddProductScreen extends StatelessWidget {
                 ),
                 UiHelper.customTextField(
                     controller: categoryController, hintText: 'Enter category'),
+                const SizedBox(
+                  height: 16,
+                ),
+                UiHelper.customTextField(  inputType: const TextInputType.numberWithOptions(),
+                    controller: discountAmountController,
+                    hintText: 'Enter DiscountAmount'),
+                const SizedBox(
+                  height: 16,
+                ),
+                UiHelper.customTextField(  inputType: const TextInputType.numberWithOptions(),
+                    controller: stockController, hintText: 'Enter stock'),
                 const SizedBox(
                   height: 16,
                 ),

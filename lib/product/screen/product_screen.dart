@@ -26,7 +26,7 @@ class ProductScreen extends StatelessWidget {
         },
         child: const Icon(Icons.add),
       ),
-      appBar: Util.appBar('Products', Icon(Icons.search),(){}),
+      appBar: Util.appBar('Products', Icon(Icons.search), () {}),
       body: Consumer<ProductProvider>(
         builder: (context, provider, child) {
           if (provider.productList.isEmpty) {
@@ -57,7 +57,7 @@ class ProductScreen extends StatelessWidget {
                             actions: [
                               TextButton(
                                   onPressed: () {
-                                    provider.deleteProduct(product.sId);
+                                    provider.deleteProduct(product.id);
                                     Navigator.pop(context);
                                   },
                                   child: const Text('Yes')),
@@ -82,10 +82,12 @@ class ProductScreen extends StatelessWidget {
                   child: Card(
                     elevation: 1,
                     child: ListTile(
+                      leading: CircleAvatar(
+                        child: Text(product.stock.toString()??'0'),
+                      ),
                       title: Text(product.name ?? 'No product name'),
-                      subtitle: Text(" Rs.${product.price.toString()}"),
-                      trailing: Text(product.description ?? 'No category'),
-                      leading: Text(product.iV.toString()),
+                      trailing: Text(" Rs.${product.price.toString()}"),
+                      subtitle: Text(product.description ?? 'No category'),
                     ),
                   ),
                 );

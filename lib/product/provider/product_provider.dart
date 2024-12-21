@@ -29,7 +29,7 @@ class ProductProvider extends ChangeNotifier {
       bool success = await productService.deleteProduct(id);
 
       if (success) {
-        productList.removeWhere((product) => product.sId == id);
+        productList.removeWhere((product) => product.id == id);
         notifyListeners();
         Util.flutterToast('Product deleted successfully');
       }
@@ -42,6 +42,7 @@ class ProductProvider extends ChangeNotifier {
     try {
       bool result = await productService.addProduct(product);
       notifyListeners();
+
       if (result) {
         Util.flutterToast('Product Added Successfully');
         return true;
@@ -57,7 +58,7 @@ class ProductProvider extends ChangeNotifier {
       bool success = await productService.updateProduct(id, productModel);
       notifyListeners();
       if (success) {
-        Util.flutterToast('Product Added Successfully');
+        Util.flutterToast('Product Updated Successfully');
         return true;
       }
     } catch (e) {
