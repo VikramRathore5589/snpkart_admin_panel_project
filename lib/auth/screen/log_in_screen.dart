@@ -19,7 +19,7 @@ class LogInScreen extends StatelessWidget {
       String email = emailController.text;
       String password = passwordController.text;
       if (formKey.currentState!.validate()) {
-        AuthModel authModel = AuthModel(username: email, password: password);
+        AuthModel authModel = AuthModel(email: email, password: password);
         AuthProvider authProvider =
         Provider.of<AuthProvider>(context, listen: false);
         bool success = await authProvider.logIn(authModel);

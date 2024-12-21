@@ -18,7 +18,7 @@ class SignUpScreen extends StatelessWidget {
       String username = usernameController.text;
       String password = passwordController.text;
       if (formKey.currentState!.validate()) {
-        AuthModel authModel = AuthModel(username: username, password: password);
+        AuthModel authModel = AuthModel(email: username, password: password);
 
         AuthProvider authProvider =
             Provider.of<AuthProvider>(context, listen: false);
