@@ -14,8 +14,10 @@ class AddCategoryScreen extends StatefulWidget {
 
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
   final categoryNameController = TextEditingController();
+  final formKey=GlobalKey<FormState>();
 
   Future addCategory() async {
+    if(formKey.currentState!.validate()){
     String name = categoryNameController.text;
     CategoryModel categoryModel = CategoryModel(name: name);
     CategoryProvider categoryProvider =
@@ -32,7 +34,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
     } else {
       throw 'Unable to add Category';
     }
-  }
+  }}
 
   @override
   Widget build(BuildContext context) {
@@ -40,22 +42,25 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
       appBar: AppBar(
         title: Text('Add category'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            UiHelper.customTextField(
-                controller: categoryNameController,
-                hintText: 'Enter category name'),
-            SizedBox(
-              height: 16,
-            ),
-            UiHelper.customElevatedButton(
-                callback: () {
-                  addCategory();
-                },
-                child: 'Add')
-          ],
+      body: Form(
+        key: formKey,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              UiHelper.customTextField(
+                  controller: categoryNameController,
+                  hintText: 'Enter category name'),
+              const SizedBox(
+                height: 16,
+              ),
+              UiHelper.customElevatedButton(
+                  callback: () {
+                    addCategory();
+                  },
+                  child: 'Add')
+            ],
+          ),
         ),
       ),
     );
