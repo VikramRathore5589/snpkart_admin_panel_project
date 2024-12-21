@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:snpkart_admin_panel_project/admin/screen/add_category_screen.dart';
+import 'package:snpkart_admin_panel_project/category/screen/add_category_screen.dart';
 import 'package:snpkart_admin_panel_project/category/model/category_model.dart';
 import 'package:snpkart_admin_panel_project/category/provider/category_provider.dart';
 import 'package:snpkart_admin_panel_project/category/screen/category_detail_screen.dart';
@@ -22,7 +22,7 @@ class CategoryScreen extends StatelessWidget {
               builder: (context) => AddCategoryScreen(),
             ));
       }, const Icon(Icons.add)),
-      appBar: Util.appBar('Categories'),
+      appBar: Util.appBar('Categories',Icon(Icons.search),(){}),
       body: Consumer<CategoryProvider>(builder: (context, provider, child) {
         if (provider.categoryList.isEmpty) {
           return const Center(child: CircularProgressIndicator());
@@ -63,7 +63,7 @@ class CategoryScreen extends StatelessWidget {
                 },
                 child: Card(
                   child: ListTile(
-                    title: Text(items.name ?? 'No name'),
+                    title:Text(items.name??'No name'),
                     subtitle: Text(items.sId ?? 'No sId'),
                     trailing: Text(items.iV.toString()),
                   ),

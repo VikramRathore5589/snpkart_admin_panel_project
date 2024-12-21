@@ -55,4 +55,20 @@ class CategoryService {
       throw 'Invalid token';
     }
   }
+
+  Future<bool> updateCategory(CategoryModel categoryModel, id) async {
+    String? token = await StorageHelper.getToken();
+    String url = "${ApiUrl.updateCategory}$id";
+    final encode = jsonEncode(categoryModel.toJson());
+    Response response = await http.put(Uri.parse(url), body: encode,headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': 'aihfj--qwnkqwr--jlkqwnjqw--jnkqwjnqwy',
+      'Authorization': 'Bearer $token',
+    });
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      throw 'Something went wrong';
+    }
+  }
 }

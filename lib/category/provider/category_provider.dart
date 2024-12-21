@@ -30,12 +30,27 @@ class CategoryProvider extends ChangeNotifier {
     } catch (e) {
       Util.flutterToast(e.toString());
     }
-  } Future addCategory(CategoryModel categoryModel) async {
+  }
+
+  Future addCategory(CategoryModel categoryModel) async {
     try {
       bool success = await categoryService.addCategory(categoryModel);
       notifyListeners();
       if (success) {
         Util.flutterToast('New category Added Successfully');
+        return true;
+      }
+    } catch (e) {
+      Util.flutterToast(e.toString());
+      return false;
+    }
+  }
+
+  Future updateCategory(CategoryModel categoryModel, id) async {
+    try {
+      bool success = await categoryService.updateCategory(categoryModel, id);
+      if (success) {
+        Util.flutterToast('Category Updated Successfully');
         return true;
       }
     } catch (e) {

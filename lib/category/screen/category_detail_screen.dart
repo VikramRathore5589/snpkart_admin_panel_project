@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:snpkart_admin_panel_project/category/model/category_model.dart';
+import 'package:snpkart_admin_panel_project/category/screen/update_category_screen.dart';
 import 'package:snpkart_admin_panel_project/core/app_util.dart';
 
 class CategoryDetailScreen extends StatelessWidget {
@@ -10,7 +11,13 @@ class CategoryDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Util.appBar('Category Detail'),
+        appBar: Util.appBar('Category Detail', const Icon(Icons.edit), () {
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => UpdateCategoryScreen(categoryModel:categoryModel,),
+              ));
+        }),
         body: Center(
           child: Container(
             height: MediaQuery.of(context).size.height * 0.5,
